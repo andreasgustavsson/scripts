@@ -3,13 +3,13 @@
 function usage()
 {
     echo "Usage:"
-    echo "    $0 [-h|--help]"
+    echo "    $0 [anything] [-h|--help] [anything]"
     echo "        Prints this text and exits"
     echo "    $0 [-l l] [-u u] [-e e] [-i[EXT]] file.md"
     echo "        Generates a table of contents for file.md and prints it to stdout."
     echo "        The heading levels between l (1) and u (6) number of '#' are included."
     echo "        Any line starting with a '#' followed by at least e (2) or more spaces is excluded."
-    echo "        With -i specified, file.md is modified in-place, and a backup, file.mdEXT, is created iff EXT is specified."
+    echo "        With -i specified, file.md is modified in-place, and a backup file, file.mdEXT, is created iff EXT is specified."
 }
 
 
