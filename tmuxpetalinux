@@ -1,0 +1,26 @@
+#!/bin/bash
+
+SESH="petalinux"
+WINPL="PetaLinux_K26_BSP"
+
+tmux has-session -t $SESH 2> /dev/null
+
+if [ $? != 0 ]
+then 
+    tmux new-session -d -s $SESH -n $WINPL
+    tmux send-keys -t $SESH:$WINPL "cd /data/xilinx/petalinux-k26-bsp" C-m
+#     tmux send-keys -t $SESH:$WINPL "source ~/.petalinux_settings_2023.2" C-m
+    tmux send-keys -t $SESH:$WINPL "source /data/xilinx/petalinux_2023.2/settings.sh" C-m
+
+    tmux new-window -t $SESH -n "minicom"
+    tmux send-keys -t $SESH:minicom "minicom -D /dev/ttyUSB1" C-m
+
+    tmux new-window -t $SESH -n "vivado"
+#     tmux send-keys -t $SESH:vivado "vivado" C-m
+
+    tmux new-window -t $SESH -n "misc"
+
+    tmux select-window -t $SESH:$WINPL
+fi
+
+tmux attach-session -t $SESH
